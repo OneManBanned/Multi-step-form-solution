@@ -1,0 +1,38 @@
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/typography' as *;
+
+.success {
+    justify-content: center;
+    align-items: center;
+
+    .success-body {
+        padding-top: 13rem;
+        text-align: center;
+        background-image: url('/icon-thank-you.svg');
+        background-repeat: no-repeat;
+        background-position: center 22.5%;
+        width: 95%;
+        word-wrap: break-word;
+
+        @include dt {
+            height: 90%;
+            background-position: center 30%;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 4rem;
+            line-height: 2rem;
+            font-size: $fs-750;
+
+            @include dt {
+                width: 50ch;
+                font-size: $fs-600;
+                line-height: 1.5rem;
+            }
+        }
+    }
+}

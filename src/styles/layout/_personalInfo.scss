@@ -1,0 +1,73 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/typography' as *;
+
+.personalInfo {
+
+    label {
+        margin-bottom: .5rem;
+
+
+        @include dt {
+            margin-bottom: .5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        span {
+            display: block;
+            padding-top: .25rem;
+            padding-bottom: .15rem;
+
+            @include dt {
+                display: inline;
+                padding-block: 0;
+            }
+        }
+    }
+
+    input {
+        cursor: pointer;
+        border: 1px solid $light-gray;
+        min-height: 3rem;
+        border-radius: .5rem;
+        margin-bottom: 1.25rem;
+        padding-left: 1rem;
+        font-weight: $bold;
+        color: $marine-blue;
+
+        @include dt {
+            margin-bottom: 1.25rem;
+            border-radius: .5em;
+        }
+
+        &::placeholder {
+            font-weight: $medium;
+        }
+
+        &:focus {
+            outline: 2px solid $marine-blue;
+            outline-offset: .25rem;
+            border: 1px solid $purplish-blue;
+        }
+
+        &:hover {
+            border: 1px solid $purplish-blue;
+        }
+    }
+}
+
+.error {
+    outline: 1px solid red;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

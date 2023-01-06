@@ -1,0 +1,95 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/breakpoints' as *;
+
+
+.form-template {
+    background-color: transparent;
+    max-height: 100%;
+    min-width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+
+    @include dt {
+        position: relative;
+        min-width: 70%;
+        max-height: 100%;
+        background-color: transparent;
+        border-radius: .625rem;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 100%;
+        padding-top: 2rem;
+    }
+
+    &-title {
+        margin-bottom: .5rem;
+
+    }
+
+    &-description {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        width: 95%;
+
+        @include dt {
+            margin-bottom: 2rem;
+            line-height: 1.75rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+    }
+
+    &-inputs {
+        position: inherit;
+        width: min(90%, 27.5rem);
+        border-radius: .625rem;
+        margin-top: 7rem;
+        padding: 1.5rem;
+        padding-block-start: 2rem;
+        flex-direction: column;
+        background-color: $white;
+
+        @include dt {
+            position: static;
+            padding: 2rem 2rem 1rem 2rem;
+            min-width: 75%;
+            margin-top: 0;
+            padding: 0;
+        }
+    }
+
+    &-btns {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        min-width: 100%;
+        background-color: $alabaster;
+        display: flex;
+        justify-content: center;
+        padding-block: 1rem;
+        z-index: 5;
+
+        @include dt {
+            position: static;
+            background-color: transparent;
+
+
+        }
+
+        &-btn {
+            width: min(90%, 27.5rem);
+            background-color: inherit;
+            display: flex;
+            justify-content: space-between;
+
+            @include dt {
+                min-width: 75%;
+                background-color: transparent;
+            }
+        }
+    }
+}
