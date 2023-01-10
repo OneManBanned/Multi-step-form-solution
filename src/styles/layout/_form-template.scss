@@ -5,10 +5,11 @@
 .form-template {
     background-color: transparent;
     max-height: 100%;
-    min-width: 100vw;
+    min-width: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    flex-grow: 1;
     justify-content: center;
 
     @include dt {
@@ -52,6 +53,8 @@
         padding-block-start: 2rem;
         flex-direction: column;
         background-color: $white;
+        height: min-content;
+
 
         @include dt {
             position: static;
@@ -76,15 +79,13 @@
         @include dt {
             position: static;
             background-color: transparent;
-
-
         }
 
         &-btn {
             width: min(90%, 27.5rem);
-            background-color: inherit;
             display: flex;
-            justify-content: space-between;
+            flex-direction: row-reverse;
+
 
             @include dt {
                 min-width: 75%;

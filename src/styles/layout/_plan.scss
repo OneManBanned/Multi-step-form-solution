@@ -1,7 +1,5 @@
 @use '../abstracts/breakpoints' as *;
 
-
-
 .plan {
     &-radioGroup {
         flex-direction: column;
@@ -14,11 +12,10 @@
         }
     }
 
-    &-slider {
+    &-fieldset {
         min-width: 100%;
         padding-block: 1rem;
         border-radius: .5rem;
-        justify-content: center;
-        align-items: center;
+        border: none;
     }
 }

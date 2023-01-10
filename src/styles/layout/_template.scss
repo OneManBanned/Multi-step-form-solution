@@ -3,20 +3,23 @@
 @use '../abstracts/breakpoints' as *;
 
 body {
+    margin-bottom: 40%;
+
     @include dt {
         place-items: center;
+        margin-bottom: 0;
     }
 }
 
 .container {
-    min-height: 100vh;
-    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
 
     @include dt {
         background-color: $white;
         padding: 1rem;
         border-radius: .625rem;
-        display: flex;
+        flex-direction: row;
         width: min(57.75rem, 95vw);
         min-height: min(35.5rem, 100vh);
         margin-bottom: 0;
@@ -24,14 +27,14 @@ body {
     }
 
     &-tabs {
-        background-image: url('/public/assets/images/bg-sidebar-mobile.svg');
+        background-image: url('/bg-sidebar-mobile.svg');
         background-repeat: no-repeat;
         background-size: 100% auto;
         min-height: 225px;
         padding-top: 2.5rem;
 
         @include dt {
-            background-image: url('/assets/images/bg-sidebar-desktop.svg');
+            background-image: url('/bg-sidebar-desktop.svg');
             background-repeat: no-repeat;
             background-size: auto 100%;
             min-width: 30%;

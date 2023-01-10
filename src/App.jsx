@@ -21,7 +21,7 @@ function App() {
     name: '',
     email: '',
     number: '',
-    planYearly: false,
+    planLength: 'yearly',
     planLevel: 'arcade',
     onlineService: false,
     largerStorage: false,
@@ -30,7 +30,8 @@ function App() {
 
 
   return (
-    <main className="container">
+    <main className="container" aria-live='polite'>
+      <h1 className='sr-only'>Registration</h1>
       <div className='container-tabs'>
         <div className='container-tabs-tab'>
           {<Steps num='1' text='your info' step={stage} />}
@@ -77,7 +78,7 @@ function App() {
     setSignUp(prevState => {
       return {
         ...prevState,
-        [name]: !prevState.planYearly
+        [name]: prevState.planLength === 'monthly' ? 'yearly' : 'monthly'
       }
     })
   }
@@ -89,7 +90,8 @@ function App() {
         return <PersonalInfo
           next={nextStep}
           change={handleChange}
-          signUp={signUp} />
+          signUp={signUp}
+        />
       case 2:
         return <Plan
           previous={prevStep}

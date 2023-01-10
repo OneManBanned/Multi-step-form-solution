@@ -121,7 +121,7 @@
             }
         }
 
-        p {
+        span {
             margin-top: .4rem;
         }
 
@@ -144,8 +144,6 @@
         min-height: 100%;
         position: absolute;
     }
-
-
 }
 
 .radio-input:checked+label {
@@ -160,49 +158,60 @@
 
 // Slider
 
-.toggle {
-    --width: 2.1875rem;
-    --height: calc(var(--width) / 2);
-    --border-radius: calc(var(--height) / 2);
-    display: inline-flex;
-    cursor: pointer;
-    position: relative;
+.plan-fieldset {
+    display: flex;
+    justify-content: center;
 
-    &-input {
-        opacity: 0;
-        width: 100%;
-        position: absolute;
-    }
 
-    &-fill {
-        position: relative;
-        width: var(--width);
-        height: var(--height);
-        border-radius: (var(--border-radius));
-        background-color: $marine-blue;
-        margin-inline: 1rem;
+    &-radioGroup {
+        display: flex;
 
-        &::after {
-            content: '';
-            position: absolute;
-            height: 65%;
-            aspect-ratio: 1;
-            background-color: $white;
-            border-radius: var(--border-radius);
-            top: 16.5%;
-            left: 10%;
-            transition: transform 0.2s;
+        label {
+            cursor: pointer;
+            margin-inline: 1rem;
+            align-self: center;
+        }
+
+        &-sliderContainer {
+            position: relative;
+            background-color: $marine-blue;
+            width: 3rem;
+            height: 1.5rem;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            border-radius: .75rem;
+
+            &:focus-within {
+                outline-offset: .25rem;
+                outline: 2px solid $marine-blue;
+            }
+        }
+
+        input {
+            cursor: pointer;
+            position: relative;
+            z-index: 3;
+            opacity: 0;
+            width: 50%;
         }
     }
 }
 
-.toggle-input:checked~.toggle-fill::after {
-    transform: translateX(145%);
+.fill {
+    height: .9rem;
+    aspect-ratio: 1;
+    background-color: $white;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    transition: transform 0.2s;
+    margin-inline: .25rem;
 }
 
-.toggle-input:focus-visible+.toggle-fill {
-    outline: 2px solid $marine-blue;
-    outline-offset: .25rem;
+[data-yearly]:checked~.fill {
+    transform: translateX(180%);
 }
 
 // Checkboxes
@@ -301,3 +310,50 @@
 .checkbox-input:focus {
     outline: none;
 }
+
+
+
+// .toggle {
+//     --width: 2.1875rem;
+//     --height: calc(var(--width) / 2);
+//     --border-radius: calc(var(--height) / 2);
+//     display: inline-flex;
+//     cursor: pointer;
+//     position: relative;
+
+//     &-input {
+//         opacity: 0;
+//         width: 100%;
+//         position: absolute;
+//     }
+
+//     &-fill {
+//         position: relative;
+//         width: var(--width);
+//         height: var(--height);
+//         border-radius: (var(--border-radius));
+//         background-color: $marine-blue;
+//         margin-inline: 1rem;
+
+//         &::after {
+//             content: '';
+//             position: absolute;
+//             height: 65%;
+//             aspect-ratio: 1;
+//             background-color: $white;
+//             border-radius: var(--border-radius);
+//             top: 16.5%;
+//             left: 10%;
+//             transition: transform 0.2s;
+//         }
+//     }
+// }
+
+// .toggle-input:checked~.toggle-fill::after {
+//     transform: translateX(145%);
+// }
+
+// .toggle-input:focus-visible+.toggle-fill {
+//     outline: 2px solid $marine-blue;
+//     outline-offset: .25rem;
+// }

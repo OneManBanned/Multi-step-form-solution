@@ -1,9 +1,5 @@
 import React from 'react'
 
-import arcade from '../../public/assets/images/icon-arcade.svg'
-import advanced from '../../public/assets/images/icon-advanced.svg'
-import pro from '../../public/assets/images/icon-pro.svg'
-
 export default function RadioInput({ value, change, signUp, amount }) {
 
     // Insures correct radio button is checked
@@ -11,7 +7,7 @@ export default function RadioInput({ value, change, signUp, amount }) {
         return string === name ? true : false
     }
 
-    const labelText = signUp.planYearly ? `${amount} dollars per year` : `${amount} dollars per month`
+    const labelText = signUp.planLength === 'yearly' ? `${amount} dollars per year. 2 months free` : `${amount} dollars per month`
 
     return (
         <div className='radio'>
@@ -23,16 +19,15 @@ export default function RadioInput({ value, change, signUp, amount }) {
                 value={value}
                 id={value}
                 checked={handleRadioBtns(value, signUp.planLevel)}
-                readOnly
+                aria-label={`${value} ${labelText}`}
             />
             <label
                 className={classSelector(value)}
-                htmlFor={value}>
-                <p className='clr-mb fw-b fs-700'>{value.charAt(0).toUpperCase() + value.substring(1)}</p>
-                <p
-                    aria-label={labelText}
-                    className='clr-cg fs-500'>{`$${amount}`}{signUp.planYearly ? `/yr` : '/mo'}</p>
-                {signUp.planYearly && <p className='clr-mb fw-m fs-400'>2 months free</p>}
+                htmlFor={value}
+            >
+                <span className='clr-mb fw-b fs-700'>{value.charAt(0).toUpperCase() + value.substring(1)}</span>
+                <span className='clr-cg fs-500'>{`$${amount}`}{signUp.planLength === 'yearly' ? `/yr` : '/mo'}</span>
+                {signUp.planLength === 'yearly' && <span className='clr-mb fw-m fs-400'>2 months free</span>}
             </label>
         </div >
     )

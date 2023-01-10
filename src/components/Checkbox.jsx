@@ -5,7 +5,6 @@ export default function Checkbox(
         amount, signUp, serviceDescEnd,
         serviceDescStart, change, name, checked, mobile }) {
 
-
     return (
         <label className='checkbox grid'
             aria-label={usefulAria()}
@@ -19,28 +18,28 @@ export default function Checkbox(
                 type="checkbox" />
             <div className='checkbox-bg'></div>
             {service === 'Profile'
-                ? <p className='checkbox-service fw-b clr-mb'>{serviceDescStart}<span>{serviceDescEnd}</span> {service}</p>
-                : <p className='checkbox-service fw-b clr-mb'>{service}</p>}
+                ? <div className='checkbox-service fw-b clr-mb'>{serviceDescStart}<span>{serviceDescEnd}</span> {service}</div>
+                : <div className='checkbox-service fw-b clr-mb'>{service}</div>}
             {service === 'Online service'
                 ? mobile
-                    ? <p className='checkbox-description clr-cg'>{descDesktop}</p>
-                    : <p className='checkbox-description clr-cg'>{descMobile.charAt(0).toUpperCase() + descMobile.substring(1)}</p>
-                : <p className='checkbox-description clr-cg'>{descDesktop} <span>{descMobile}</span></p>}
-            <p
+                    ? <div className='checkbox-description clr-cg'>{descDesktop}</div>
+                    : <div className='checkbox-description clr-cg'>{descMobile.charAt(0).toUpperCase() + descMobile.substring(1)}</div>
+                : <div className='checkbox-description clr-cg'>{descDesktop} <span>{descMobile}</span></div>}
+            <div
                 className='checkbox-cost fw-m clr-prb'
             >
-                {`+$${amount}`}<span aria-hidden>{`${signUp.planYearly ? 'yr' : 'mo'}`}</span></p>
+                {`+$${amount}`}<span aria-hidden>{`${signUp.planLength === 'yearly' ? 'yr' : 'mo'}`}</span></div>
         </label>
     )
 
     function usefulAria() {
         switch (service) {
             case 'Online service':
-                return ` Online service access to multiplayer games ${signUp.planYearly ? 'ten dollars per year' : 'one dollar per month'}`
+                return ` Online service access to multiplayer games ${signUp.planLength === 'yearly' ? 'ten dollars per year' : 'one dollar per month'}`
             case 'Larger storage':
-                return `larger storage extra one terra byte of cloud save ${signUp.planYearly ? 'twenty dollars per year' : 'two dollars per month'}`
+                return `larger storage extra one terra byte of cloud save ${signUp.planLength === 'yearly' ? 'twenty dollars per year' : 'two dollars per month'}`
             case 'Profile':
-                return `Customizable profile custom theme on your profile ${signUp.planYearly ? 'twenty dollars per year' : 'two dollars per month'}`
+                return `Customizable profile custom theme on your profile ${signUp.planLength === 'yearly' ? 'twenty dollars per year' : 'two dollars per month'}`
             default:
                 undefined
         }

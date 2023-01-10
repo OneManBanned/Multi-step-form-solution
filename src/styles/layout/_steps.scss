@@ -9,9 +9,12 @@
     }
 
     &-text {
-        display: none;
+        position: absolute;
+        right: 100%;
 
         @include dt {
+            position: relative;
+            right: 0;
             display: flex;
             flex-direction: column;
             margin-left: 1rem;
