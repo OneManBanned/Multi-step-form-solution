@@ -14,7 +14,7 @@ export default function Confirmation({ next, previous, click, signUp }) {
     }, [signUp.largerStorage, signUp.onlineService, signUp.customizableProfile])
 
     return (
-        <form className='form-template flex' aria-live='polite'>
+        <form className='form-template flex'>
             <div className='form-template-inputs confirmation flex bg-white clr-mb'>
                 <h3 className='fw-b fs-800 form-template-title'>Finishing up</h3>
                 <p className='clr-cg fw-m form-template-description'>Double-check everything looks OK before confirming</p>
@@ -25,12 +25,13 @@ export default function Confirmation({ next, previous, click, signUp }) {
                             ${planPrice()}/{signUp.planLength === 'yearly' ? 'yr' : 'mo'}</p>
                         <span className='sr-only'>{planPrice()} dollars per {signUp.planLength === 'yearly' ? 'year' : 'month'}</span>
                         <button
-                            onClick={(e) => { click(e), test(e) }}
+                            onClick={(e) => { console.log(e), click(e), e.target.airalabelledby = 'total' }}
                             onBlur={(e) => {
                                 signUp.planLength === 'monthly'
-                                    ? e.target.ariaLabel = 'Change to yearly plan' :
-                                    e.target.ariaLabel = 'Change to monthly plan'
+                                    ? e.target.ariaLabel = 'Change to yearly plan'
+                                    : e.target.ariaLabel = 'Change to monthly plan'
                             }}
+
                             name='planLength'
                             aria-describedby='total'
                             className='fw-r clr-cg'>Change<span className='sr-only'>to {signUp.planLevel === 'monthly' ? 'yearly' : 'monthly'} plan</span></button>
@@ -46,7 +47,7 @@ export default function Confirmation({ next, previous, click, signUp }) {
                         </div>
                     }
                 </div>
-                <div className='confirmation-total' id='total' tabIndex='0'>
+                <div className='confirmation-total' tabIndex='0'>
                     <div aria-hidden className='flex fw-m clr-cg'><p>Total <span>({signUp.planLength === 'yearly' ? 'per year' : 'per month'})</span></p><p className='clr-prb fw-b fs-750'>${tally()}/{signUp.planLength === 'yearly' ? 'yr' : 'mo'}</p></div>
                     <div className='sr-only'><p>Total <span>({signUp.planLength === 'yearly' ? 'per year' : 'per month'})</span></p><p>{tally()} dollars</p></div>
                 </div>
@@ -91,42 +92,5 @@ export default function Confirmation({ next, previous, click, signUp }) {
         return totalStr
     }
 
-    function test(e) {
-        if (signUp.planLength === 'yearly') {
-            e.target.ariaLabel = `${tallyPrice()} dollars per month`
-        } else {
-            e.target.ariaLabel = `${tallyPrice()} dollars per year`
-        }
-    }
-
-    function price() {
-        switch (signUp.planLevel) {
-            case 'arcade':
-                return signUp.planLength === 'yearly' ? '9' : '90'
-            case 'advanced':
-                return signUp.planLength === 'yearly' ? '12' : '120'
-            case 'pro':
-                return signUp.planLength === 'yearly' ? '15' : '150'
-            default:
-                return undefined
-        }
-    }
-
-    function tallyPrice() {
-        let value = price()
-        let addOns = 0
-        if (signUp.onlineService) {
-            signUp.planLength === 'monthly' ? addOns += 10 : addOns += 1
-        }
-        if (signUp.largerStorage) {
-            signUp.planLength === 'monthly' ? addOns += 20 : addOns += 2
-        }
-        if (signUp.customizableProfile) {
-            signUp.planLength === 'monthly' ? addOns += 20 : addOns += 2
-        }
-        let total = addOns + parseInt(value)
-        let totalStr = total.toString()
-        return totalStr
-    }
 }
 

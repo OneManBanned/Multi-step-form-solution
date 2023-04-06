@@ -6,24 +6,31 @@
 
     &-inputContainer {
 
+
         margin-bottom: 1rem;
 
         @include dt {
             height: fit-content;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, fit-content);
         }
 
         label {
             @include dt {
                 align-self: flex-end;
+                grid-row: 1/2;
+                grid-column: 1/2;
             }
         }
 
         div {
             margin-block: .25rem;
+            visibility: hidden;
 
             @include dt {
+                grid-row: 1/2;
+                grid-column: 2/3;
                 justify-self: flex-end;
                 margin: 0;
             }
@@ -65,9 +72,6 @@
     }
 }
 
-.error {
-    outline: 1px solid red;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -78,4 +82,16 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+input:invalid~div {
+    display: block;
+}
+
+input:invalid[focused='true']~div {
+    visibility: visible;
+}
+
+input:invalid[focused='true'] {
+    border: 1px solid red;
 }

@@ -18,7 +18,7 @@ function App() {
   const [stage, setStage] = useState(1)
   // State containting form data
   const [signUp, setSignUp] = useState({
-    name: '',
+    username: '',
     email: '',
     number: '',
     planLength: 'yearly',
