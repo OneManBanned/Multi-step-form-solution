@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export default function FormInput(props) {
     const [focused, setFocused] = useState(false)
-    const { label, onChange, id, placeholder, errorMessage, ...inputProps } = props;
+    const { label, type, onChange, id, placeholder, errorMessage, ...inputProps } = props;
 
     const handleFocus = (e) => {
         setFocused(true)
@@ -18,6 +18,8 @@ export default function FormInput(props) {
                 id={label}
                 onBlur={handleFocus}
                 focused={focused.toString()}
+                type={type}
+                required
             />
             <div id={id} className="clr-rd">{errorMessage}</div>
 

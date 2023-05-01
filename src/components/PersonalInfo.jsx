@@ -1,7 +1,9 @@
-import React from 'react'
+import { useRef } from 'react'
 import FormInput from './FormInput'
 
 export default function PersonalInfo({ signUp, change, next }) {
+
+    const form = useRef(null)
 
     const inputs = [
         {
@@ -38,15 +40,19 @@ export default function PersonalInfo({ signUp, change, next }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        next(e)
+        if (!form.current.checkValidity()) {
+            return
+        } else {
+            next(e)
+        }
     };
 
     return (
         <form
             className='form-template personalInfo flex'
-            onSubmit={handleSubmit}
-
+            onSubmit={(e) => handleSubmit(e)}
+            ref={form}
+            noValidate
         >
             <div className='form-template-inputs  flex bg-white clr-mb'>
                 <h3 className='fw-b fs-800 form-template-title'>Personal Info</h3>
@@ -57,6 +63,7 @@ export default function PersonalInfo({ signUp, change, next }) {
                         {...input}
                         value={signUp[input.name]}
                         onChange={change}
+                        type={input.type}
                     />
                 ))}
             </div>
