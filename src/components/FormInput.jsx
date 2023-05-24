@@ -1,28 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function FormInput(props) {
-    const [focused, setFocused] = useState(false)
-    const { label, type, onChange, id, placeholder, errorMessage, ...inputProps } = props;
+    const [err, setErr] = useState('')
+    const { label, type, onChange, id, valid, placeholder, errMsg, ...inputProps } = props;
 
-    const handleFocus = (e) => {
-        setFocused(true)
-    }
 
     return (
         <div className='personalInfo-inputContainer'>
             <label htmlFor={label}>{label}</label>
             <input {...inputProps}
-                onChange={onChange}
+                onChange={onChange} 
                 placeholder={placeholder}
                 aria-describedby={id}
                 id={label}
-                onBlur={handleFocus}
-                focused={focused.toString()}
+                
+                onBlur={handleErr}
                 type={type}
                 required
+                className={err ? 'invalid' : 'valid'}
             />
-            <div id={id} className="clr-rd">{errorMessage}</div>
-
+            <span id={id} className={err ? 'invalid' : 'valid'}>{err}</span>
         </div>
     )
 }
