@@ -1,8 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
 
-// create input ref for focus on load and on error
-// Delete form input
-
 export default function PersonalInfo({ signUp, change, next }) {
 
     // Refs used to manage focus 
@@ -135,7 +132,7 @@ export default function PersonalInfo({ signUp, change, next }) {
                         value={signUp.number}
                         onChange={(e) => { change(e); clearErr(e) }}
                         onBlur={validateInput}
-                        pattern='[?\+][\d\s-]+|^[\d][\d\s-]+|[\d]+[\d\s-]+'
+                        pattern='^([\d]|[+])[\d\s]+[\d]$'
                         minLength='9'
                         className={numberErr[1] ? 'invalid' : null}
                         required

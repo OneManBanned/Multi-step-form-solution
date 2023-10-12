@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 // Components
 
 import RadioInput from './RadioInputs'
@@ -7,9 +5,7 @@ import RadioInput from './RadioInputs'
 export default function Plan({ next, previous, change, signUp }) {
 
     return (
-        <form noValidate className='form-template flex'
-
-        >
+        <form noValidate className='form-template flex'>
             <div className='form-template-inputs plan flex bg-white clr-mb'>
                 <h3 className='fw-b fs-800 form-template-title'>Select your plan</h3>
                 <p className='clr-cg fw-m form-template-description'>You have the option of monthly or yearly billing.</p>
